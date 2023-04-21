@@ -19,82 +19,8 @@ async function getAndShowStoriesOnStart() {
  * Returns the markup for the story.
  */
 
-// function generateStoryMarkup(story) {
-//   // console.debug("generateStoryMarkup", story);
-
-//   const hostName = story.getHostName();
-//   return $(`
-//       <li id="${story.storyId}">
-//         <a href="${story.url}" target="a_blank" class="story-link">
-//           ${story.title}
-//         </a>
-//         <small class="story-hostname">(${hostName})</small>
-//         <small class="story-author">by ${story.author}</small>
-//         <small class="story-user">posted by ${story.username}</small>
-//       </li>
-//     `);
-// }
-
 // PART 3:
-// function generateStoryMarkup(story) {
-//   const hostName = story.getHostName(); 
-//   return $(`
-//       <li id="${story.storyId}">
-//         <span class="star">
-//         <i class="far fa-star"> 
-//         </i>
-//         </span>
-//         <a href="${story.url}" target="a_blank" class="story-link">
-//           ${story.title}
-//         </a>
-//         <small class="story-hostname">(${hostName})</small>
-//         <small class="story-author">by ${story.author}</small>
-//         <small class="story-user">posted by ${story.username}</small>
-//       </li>
-//     `);
-// }
-
-// PART 3:
-// function generateStoryMarkup(story) {
-//   const hostName = story.getHostName(); 
-//   const isFavorited = currentUser && currentUser.favorites.some(fav => fav.storyId === story.storyId);
-//   const starClass = isFavorited ? "fas" : "far";
-
-//   const $star = $(`
-//     <span class="star">
-//       <i class="${starClass} fa-star"></i>
-//     </span>
-//   `);
-
-//   const $storyLink = $(`
-//     <a href="${story.url}" target="_blank" class="story-link">${story.title}</a>
-//   `);
-
-//   const $storyMeta = $(`
-//     <small class="story-hostname">(${hostName})</small>
-//     <small class="story-author">by ${story.author}</small>
-//     <small class="story-user">posted by ${story.username}</small>
-//   `);
-
-//   if (currentUser) {
-//     $star.on("click", function() {
-//       if (isFavorited) {
-//         currentUser.removeFavorite(story);
-//         $(this).find("i").toggleClass("fas far");
-//       } else {
-//         currentUser.addFavorite(story);
-//         $(this).find("i").toggleClass("fas far");
-//       }
-//       saveUserCredentialsInLocalStorage();
-//     });
-//   } else {
-//     $star.addClass("hidden");
-//   }
-
-//   return $(`
-//     <li id="${story.storyId}"></li>
-//   `).append($star, $storyLink, $storyMeta);
-// }
+// function generateStoryMarkup(story) 
 
 function generateStoryMarkup(story, isMyStory) {
   const hostName = story.getHostName(); 
@@ -134,20 +60,8 @@ function generateStoryMarkup(story, isMyStory) {
   }
 
   // PART 4:
-  // if (isMyStory) {
-  //   $trashIcon.on("click", function() {
-  //     $story.remove();
-  //     storyList.removeStory(currentUser, story);
-  //   });
-  // } else {
-  //   $trashIcon.addClass("hidden");
-  // }
+  // if (isMyStory) 
 
-  // if (isMyStory) {
-  //   $trashIcon.on("click", function() {
-  //     $story.remove();
-  //     storyList.removeStory(currentUser, story.storyId);
-  //   });
   if (isMyStory) {
     $trashIcon.on("click", function() {
       $story.remove();
@@ -196,24 +110,7 @@ $('#nav-favorites').on('click', function(evt) {
   putFavoritesOnPage();
 });
 
-// STYLING MATCH:
-// function putFavoritesOnPage() { 
-//   $allStoriesList.empty();
-//   hidePageComponents();
-//   // check if the user has any favorites
-//   if (currentUser.favorites.length === 0) {
-//     const $noFavorites = $("<p>").text("No favorites to show!");
-//     $allStoriesList.append($noFavorites);
-//   } else {
-//     // loop through all of our user's favorites and generate HTML for them
-//     for (let story of currentUser.favorites) {
-//       const $story = generateStoryMarkup(story);
-//       $allStoriesList.append($story);
-//     }
-//   }
-
-//   $allStoriesList.show();
-// }
+// STYLING MATCH: 
 
 function putFavoritesOnPage() { 
   $allStoriesList.empty();
@@ -247,43 +144,8 @@ $('#nav-my-stories').on('click', function(evt) {
   putMyStoriesOnPage();
 });
 
-// function putMyStoriesOnPage() {  
-//   $allStoriesList.empty();
-//   hidePageComponents();
-//   // loop through all of our user's stories and generate HTML for them
-//   for (let story of currentUser.ownStories) {
-//     const $story = generateStoryMarkup(story);
-//     $allStoriesList.append($story);
-//   }
-//   $allStoriesList.show();
-// }
-
 // PART 4:
-// function putMyStoriesOnPage() {  
-//   $allStoriesList.empty();
-//   hidePageComponents();
-//   // loop through all of our user's stories and generate HTML for them
-//   for (let story of currentUser.ownStories) {
-//     const $story = generateStoryMarkup(story, true);
-//     $allStoriesList.append($story);
-//   }
-//   $allStoriesList.show();
-// }
-
-// function putMyStoriesOnPage() {
-//   $allStoriesList.empty();
-//   hidePageComponents(); 
-//   if (currentUser.ownStories.length === 0) {
-//     $allStoriesList.append("<p>You don't have any submitted stories!</p>");
-//   } else {
-//     for (let story of currentUser.ownStories) {
-//       const $story = generateStoryMarkup(story, true);
-//       $allStoriesList.append($story);
-//     }
-//   }
-
-//   $allStoriesList.show();
-// }
+// function putMyStoriesOnPage() 
 
 function putMyStoriesOnPage() {  
   $allStoriesList.empty();

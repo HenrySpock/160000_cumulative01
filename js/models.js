@@ -224,38 +224,38 @@ class User {
     }
   }
 
-// PART 3:
- /** Add a favorite story to the list of user favorites and update server. */
- async addFavorite(story) {
-  this.favorites.push(story);
-  await this._addOrRemoveFavorite("add", story);
-}
+  // PART 3:
+  /** Add a favorite story to the list of user favorites and update server. */
+  async addFavorite(story) {
+    this.favorites.push(story);
+    await this._addOrRemoveFavorite("add", story);
+  }
 
-/** Remove a story from the list of user favorites and update server. */
-async removeFavorite(story) {
-  this.favorites = this.favorites.filter(s => s.storyId !== story.storyId);
-  await this._addOrRemoveFavorite("remove", story);
-}
+  /** Remove a story from the list of user favorites and update server. */
+  async removeFavorite(story) {
+    this.favorites = this.favorites.filter(s => s.storyId !== story.storyId);
+    await this._addOrRemoveFavorite("remove", story);
+  }
 
-/** Send a request to the API to add or remove a favorite. */
-async _addOrRemoveFavorite(action, story) {
-  const method = action === "add" ? "POST" : "DELETE";
-  await axios({
-    url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
-    method: method,
-    data: {
-      token: this.loginToken
-    }
-  });
-  saveUserCredentialsInLocalStorage();
-}
+  /** Send a request to the API to add or remove a favorite. */
+  async _addOrRemoveFavorite(action, story) {
+    const method = action === "add" ? "POST" : "DELETE";
+    await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: method,
+      data: {
+        token: this.loginToken
+      }
+    });
+    saveUserCredentialsInLocalStorage();
+  }
 }
 
 /** Sync current user information to localStorage. */
 function saveUserCredentialsInLocalStorage() {
-if (currentUser) {
-  localStorage.setItem("token", currentUser.loginToken);
-  localStorage.setItem("username", currentUser.username);
-  localStorage.setItem("favorites", JSON.stringify(currentUser.favorites));
-}
+  if (currentUser) {
+    localStorage.setItem("token", currentUser.loginToken);
+    localStorage.setItem("username", currentUser.username);
+    localStorage.setItem("favorites", JSON.stringify(currentUser.favorites));
+  }
 }
